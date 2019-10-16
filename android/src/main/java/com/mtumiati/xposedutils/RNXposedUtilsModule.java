@@ -29,7 +29,7 @@ public class RNXposedUtilsModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void getExposedVersion(Promise promise){
+  public void getXposedVersion(Promise promise){
     try{
       Integer result = XposedUtils.getXposedVersion(this.reactContext.getApplicationContext());
       promise.resolve(result);
