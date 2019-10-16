@@ -14,8 +14,7 @@
  * limitations under the License.
  */
 
- package com.mtumiati.xposedutils;
-
+package com.mtumiati.xposedutils;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;

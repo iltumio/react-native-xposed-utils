@@ -1,76 +1,28 @@
 
 package com.mtumiati.xposedutils;
 
-import android.content.pm.PackageInfo;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
-import com.facebook.react.bridge.Promise;
+import com.facebook.react.ReactPackage;
+import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.bridge.ReactContextBaseJavaModule;
-import com.facebook.react.bridge.ReactMethod;
-import com.facebook.react.bridge.Arguments;
-import com.facebook.react.bridge.Callback;
-import com.facebook.react.bridge.WritableArray;
-import com.reactlibrary.XposedUtils;
-
-import java.util.ArrayList;
-
-public class RNXposedUtilsModule extends ReactContextBaseJavaModule {
-
-  private final ReactApplicationContext reactContext;
-
-  public RNXposedUtilsModule(ReactApplicationContext reactContext) {
-    super(reactContext);
-    this.reactContext = reactContext;
-  }
-
-  @Override
-  public String getName() {
-    return "RNXposedUtils";
-  }
-
-  @ReactMethod
-  public void getExposedVersion(Promise promise){
-    try{
-      Integer result = XposedUtils.getXposedVersion(this.reactContext.getApplicationContext());
-      promise.resolve(result);
-    }catch(Exception ex){
-      ex.printStackTrace();
-      promise.reject(null, ex.getMessage());
+import com.facebook.react.uimanager.ViewManager;
+import com.facebook.react.bridge.JavaScriptModule;
+public class RNXposedUtilsPackage implements ReactPackage {
+    @Override
+    public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
+      return Arrays.<NativeModule>asList(new RNXposedUtilsModule(reactContext));
     }
-  }
 
-  @ReactMethod
-  public void isXposedInstallerAvailable(Promise promise){
-    try{
-      Boolean result = XposedUtils.isXposedInstallerAvailable(this.reactContext.getApplicationContext());
-      promise.resolve(result);
-    }catch(Exception ex){
-      ex.printStackTrace();
-      promise.reject(null, ex.getMessage());
+    // Deprecated from RN 0.47
+    public List<Class<? extends JavaScriptModule>> createJSModules() {
+      return Collections.emptyList();
     }
-  }
 
-  @ReactMethod
-  public void isXposedActive(Promise promise){
-    try{
-      Boolean result = XposedUtils.isXposedActive();
-      promise.resolve(result);
-    }catch(Exception ex){
-      ex.printStackTrace();
-      promise.reject(null, ex.getMessage());
+    @Override
+    public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
+      return Collections.emptyList();
     }
-  }
-
-  @ReactMethod
-  public void getInstalledXposedPackages(Promise promise){
-    try{
-      ArrayList<PackageInfo> xposedPackages = XposedUtils.getInstalledXposedPackages(this.reactContext.getApplicationContext());
-      WritableArray result = Arguments.fromList(xposedPackages);
-      promise.resolve(result);
-    }catch(Exception ex){
-      ex.printStackTrace();
-      promise.reject(null, ex.getMessage());
-    }
-  }
-
 }
