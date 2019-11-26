@@ -35,4 +35,7 @@ import RNXposedUtils from 'react-native-xposed-utils';
 // TODO: What to do with the module?
 RNXposedUtils;
 ```
+
+## Credits
+[XposedUtils.java](https://gist.github.com/jaredrummler/7b7a7667643f63fcf9e334d8c16ececa) by Jared Rummler
   
