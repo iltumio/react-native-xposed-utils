@@ -1,5 +1,9 @@
 
-# react-native-xposed-utils
+# React Native Exposed Utils
+
+## Description
+
+A wrapper around [XposedUtils.java](https://gist.github.com/jaredrummler/7b7a7667643f63fcf9e334d8c16ececa) by Jared Rummler that allows your application to detect the presence of Xposed Framework on the phone.
 
 ## Getting started
 
